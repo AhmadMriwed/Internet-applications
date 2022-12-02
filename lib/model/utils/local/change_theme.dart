@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 
-import '../../../view/resource/consts_manager.dart';
+import '../../../view/manager/constants/consts_manager.dart';
 
 import 'storage.dart';
 class AppProvider extends ChangeNotifier {

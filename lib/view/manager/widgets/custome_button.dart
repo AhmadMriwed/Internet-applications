@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../resource/color.dart';
-import '../resource/style_manager.dart';
+import '../../resource/color.dart';
+import '../constants/style_manager.dart';
 
 
 class ButtonApp extends StatelessWidget {

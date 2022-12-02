@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:get_storage/get_storage.dart';
 
-import '../../../view/resource/consts_manager.dart';
+import '../../../view/manager/constants/consts_manager.dart';
 import '../../model.dart';
 
 class AppStorage {

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:untitled/view/manager/constants/const.dart';
+import 'package:untitled/view/resource/color.dart';
 
 
 import '../home/home.dart';
@@ -34,7 +36,7 @@ class _loginState extends State<login> {
         centerTitle: true,
         title:Text(
           " تطبيقات الانترنت ",
-          style: TextStyle (color: Colors.white
+          style: TextStyle (color: ColorManager.white
 
         ),
         ),
@@ -43,7 +45,7 @@ class _loginState extends State<login> {
         child: Container(
           color: Colors.pinkAccent[50],
         child:Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(AppSize.s20),
         child: SingleChildScrollView(
           child: Form(
             key: formkey,
@@ -55,20 +57,20 @@ class _loginState extends State<login> {
                 Center(
                   child: Text("Welcome back ",
                    style: TextStyle(
-                     fontSize: 40.0,
+                     fontSize: AppSize.s40,
                      fontWeight: FontWeight.bold,
                      color: Colors.blueGrey,
 
                    ),
                   ),
                 ),
-                SizedBox(height: 80.0,),
+                SizedBox(height: AppSize.s80,),
                Text("Enter your email : ",
                  style: TextStyle(
                    fontSize: 25.0,
                  ),
                ),
-              SizedBox(height: 20.0,),
+              SizedBox(height: AppSize.s20,),
                 TextFormField(
                   onFieldSubmitted: ( email){
                     print(email);
@@ -94,13 +96,13 @@ class _loginState extends State<login> {
                   } ,
                   ),
 
-                SizedBox(height: 60.0,),
+                SizedBox(height: AppSize.s60,),
                 Text("Enter your password :",
                   style: TextStyle(
                     fontSize: 30.0
                   ),
                 ),
-                SizedBox(height: 20.0,),
+                SizedBox(height: AppSize.s20,),
                  Row(
                 children:
                  [
@@ -143,7 +145,7 @@ class _loginState extends State<login> {
                    ),
 
                ] ),
-                SizedBox(height: 20.0,),
+                SizedBox(height: AppSize.s20,),
                 // ignore: deprecated_member_use
                 TextButton(
                   onPressed: (){
@@ -154,7 +156,7 @@ class _loginState extends State<login> {
                   ),
                 ),
 
-                SizedBox(height: 30.0,),
+                SizedBox(height: AppSize.s30,),
                 Center(
                   child: Container(
                     //color: Colors.black45,
@@ -183,7 +185,7 @@ class _loginState extends State<login> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.0,),
+                SizedBox(height:AppSize.s10,),
                 TextButton(
                   onPressed: (){
                     Navigator.push(

@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/view/screens/login/LogIn.dart';
-import 'package:untitled/view/utilis/sizer.dart';
 import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'controller/bottom_nav_bar_provider.dart';
