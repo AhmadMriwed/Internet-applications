@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/controller/provider/test_provider.dart';
 
 import '../home/home.dart';
-import '../login/LogIn.dart';
 
 
+import 'package:provider/provider.dart';
+
+import 'logIn.dart';
 
 
 class SignIn extends StatefulWidget {
@@ -18,11 +21,12 @@ class _SignInState extends State<SignIn> {
   String password='';
   String error='';
   final _formKey = GlobalKey<FormState>();
-
+  late TestProvider _testProvider;
 
 
   @override
   Widget build(BuildContext context) {
+    _testProvider = Provider.of<TestProvider>(context);
     return Scaffold(
         appBar: AppBar(
         backgroundColor: Colors.deepPurple[200],
@@ -190,11 +194,9 @@ class _SignInState extends State<SignIn> {
                               fontSize: 30.0,
                             ),
                           ),
-                        onPressed: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) =>  Home()),
-                          );
+                        onPressed: () async {
+                           await _testProvider.load(context);
+                         // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Home()),);
                         },
                       ),
                     ),

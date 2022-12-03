@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:untitled/view/manager/constants/const.dart';
 import 'package:untitled/view/resource/color.dart';
+import 'package:untitled/view/screens/auth/signIn.dart';
 
 
 import '../home/home.dart';
-import '../signin/signIn.dart';
 
 class login extends StatefulWidget {
 

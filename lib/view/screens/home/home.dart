@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../auth/logIn.dart';
 import '../group/group.dart';
-import '../login/LogIn.dart';
-
 
 class Home extends StatefulWidget {
 
