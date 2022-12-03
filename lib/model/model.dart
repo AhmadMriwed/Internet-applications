@@ -15,15 +15,15 @@ class User{
   String firstName;
   String lastName;
   String name;
-  String password;
+  String? password;
   String userName;
-  int userId;
+  int id;
   String email;
-  String token ;
+  String? token ;
  User({ this.name = "",
    required this.firstName,
    required this.lastName,
-   this.userId = 0,
+   this.id = 0,
    required this.email,
     this.password= "",
    this.token = "",
@@ -34,7 +34,7 @@ class User{
     return User(
       firstName: userMap["firstName"],
       lastName: userMap["lastName"],
-      userId: userMap["userId"],
+      id: userMap["id"],
       email: userMap["email"],
       password: userMap["password"],
       userName: userMap["userName"],
@@ -47,7 +47,7 @@ class User{
         'firstName':firstName,
         'name':name,
         'lastName':lastName,
-        'userId':userId,
+        'userId':id,
         'email':email,
         'password':password,
         'userName':userName,
@@ -55,7 +55,17 @@ class User{
         'token':token
     };
   }
-
+  factory User.get(){
+    return User(
+      firstName: '',
+      lastName: '',
+      id:0,
+      email: '',
+      password: '',
+      userName: '',
+      token: '',
+    );
+  }
 }
 
 class Model{

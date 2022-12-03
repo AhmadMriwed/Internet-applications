@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/controller/provider/auth_provider.dart';
 import 'package:untitled/controller/provider/test_provider.dart';
+import 'package:untitled/model/model.dart';
+import 'package:untitled/model/utils/const.dart';
 
 import '../home/home.dart';
 
@@ -16,17 +19,21 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  String email='' ;
-  String name ='' ;
-  String password='';
+  String name = "";
+  String email = "";
+  String password = "";
+  String confirmPassword = "";
+  String userName = "";
   String error='';
   final _formKey = GlobalKey<FormState>();
   late TestProvider _testProvider;
+  late AuthProvider _authProvider;
 
 
   @override
   Widget build(BuildContext context) {
     _testProvider = Provider.of<TestProvider>(context);
+    _authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
         appBar: AppBar(
         backgroundColor: Colors.deepPurple[200],
@@ -50,7 +57,69 @@ class _SignInState extends State<SignIn> {
 
                     ),
                   ),
-                  SizedBox(height: 50,)
+                  SizedBox(height: 50,),
+            ///name
+            Text("Enter your full name : ",
+            style: TextStyle(
+              fontSize: 20.0,
+            ),
+          ),
+          SizedBox(height: 20.0,),
+          TextFormField(
+           // controller: name,
+            //obscureText: true,
+            decoration: InputDecoration(
+              hintText: "Enter Your name",
+              fillColor: Colors.white,
+              filled: true,
+              enabledBorder: OutlineInputBorder(
+                borderSide:
+                BorderSide(color:Colors.grey, width: 2.0),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide:
+                BorderSide(color: Colors.blueAccent, width: 2.0),
+              ),
+            ),
+            validator: (val) =>
+            val!.isEmpty ? "Enter Your name" : null,
+            onChanged: (val) {
+              //every change in the field store in val in every second
+              name = val;
+            },
+          ),
+          SizedBox(height: 20,),
+                  ///userName
+                  Text("Enter your user name : ",
+                    style: TextStyle(
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  SizedBox(height: 20.0,),
+                  TextFormField(
+                   // controller: userName,
+                    //obscureText: true,
+                    decoration: InputDecoration(
+                      hintText: "Enter Your user name",
+                      fillColor: Colors.white,
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color:Colors.grey, width: 2.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide:
+                        BorderSide(color: Colors.blueAccent, width: 2.0),
+                      ),
+                    ),
+                    validator: (val) =>
+                    val!.isEmpty ? "Enter Your user name" : null,
+                    onChanged: (val) {
+                      userName = val;
+                    },
+                  ),
+                  SizedBox(height: 20,)
+                  ///email
                   ,Text("Enter your email : ",
                     style: TextStyle(
                       fontSize: 20.0,
@@ -58,6 +127,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(height: 20.0,),
                   TextFormField(
+                   // controller: email,
                     decoration: InputDecoration(
                       hintText: "Enter Your Email",
                       fillColor: Colors.white,
@@ -75,43 +145,11 @@ class _SignInState extends State<SignIn> {
                     val!.isEmpty ? "Enter An E-Mail" : null,
                     onChanged: (val) {
                       //every change in the field store in val in every second
-                      setState(() {
-                        email = val;
-                      });
+                      email = val;
                     },
                   ),
                   SizedBox(height: 20,),
-                  Text("Enter your full name : ",
-                    style: TextStyle(
-                      fontSize: 20.0,
-                    ),
-                  ),
-                  SizedBox(height: 20.0,),
-                  TextFormField(
-                    //obscureText: true,
-                    decoration: InputDecoration(
-                      hintText: "Enter Your name",
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                        borderSide:
-                        BorderSide(color:Colors.grey, width: 2.0),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide:
-                        BorderSide(color: Colors.blueAccent, width: 2.0),
-                      ),
-                    ),
-                    validator: (val) =>
-                    val!.isEmpty ? "Enter Your name" : null,
-                    onChanged: (val) {
-                      //every change in the field store in val in every second
-                      setState(() {
-                        name = val;
-                      });
-                    },
-                  ),
-                  SizedBox(height: 20,),
+                  //password
                   Text("Enter your password : ",
                     style: TextStyle(
                       fontSize: 20.0,
@@ -119,6 +157,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(height: 20.0,),
                   TextFormField(
+                   // controller: password,
                     obscureText: true,
                     decoration: InputDecoration(
                       hintText: "password",
@@ -133,26 +172,29 @@ class _SignInState extends State<SignIn> {
                         BorderSide(color: Colors.blueAccent, width: 2.0),
                       ),
                     ),
-                    // validator: (val) =>
-                    // val.isEmpty ? "Enter Your name" : null,
-                    // onChanged: (val) {
-                    //   //every change in the field store in val in every second
-                    //   setState(() {
-                    //     name = val;
-                    //   });
-                    // },
+                    validator: (val) {
+                      if(val =="")
+                      return "Enter  password";
+                      else
+                        return null;
+                    },
+
+                    onChanged: (val) {
+                        password = val;
+                    },
                   ),
                   SizedBox(height: 20,),
-                  Text("Renter your password : ",
+                  Text("confirm your password : ",
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
                   ),
                   SizedBox(height: 20.0,),
                   TextFormField(
+                    //controller: password,
                     obscureText: true,
                     decoration: InputDecoration(
-                      hintText: "",
+                      hintText: "confirm password",
                       fillColor: Colors.white,
                       filled: true,
                       enabledBorder: OutlineInputBorder(
@@ -164,14 +206,18 @@ class _SignInState extends State<SignIn> {
                         BorderSide(color: Colors.blueAccent, width: 2.0),
                       ),
                     ),
-                    // validator: (val) =>
-                    // val.isEmpty ? "Enter Your name" : null,
-                    // onChanged: (val) {
-                    //   //every change in the field store in val in every second
-                    //   setState(() {
-                    //     name = val;
-                    //   });
-                    // },
+                      validator: (val) {
+                        if(val =="")
+                          return "Enter confirm password";
+                        else if(confirmPassword!=password)
+                          return "confirm password not corrent";
+                        else
+                          return null;
+                      },
+                    onChanged: (val) {
+                      confirmPassword = val;
+
+                    },
                   ),
                   SizedBox(height: 30,),
 
@@ -195,8 +241,17 @@ class _SignInState extends State<SignIn> {
                             ),
                           ),
                         onPressed: () async {
-                           await _testProvider.load(context);
-                         // Navigator.push(context, MaterialPageRoute(builder: (context) =>  Home()),);
+                            if(_formKey.currentState!.validate()){
+                              _authProvider.user=User(firstName: name, lastName: "", email: email, userName: userName,password: password);
+                              Const.LOADIG(context);
+                              var result=await _authProvider.register(context);
+                              Navigator.of(context).pop();
+                              if(result['status']){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) =>  Home()),);
+                              }
+                            }
+                           //await _testProvider.load(context);
+                         //
                         },
                       ),
                     ),

@@ -5,8 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:get/get.dart';
 import 'package:untitled/view/screens/auth/logIn.dart';
 import 'controller/provider/auth_provider.dart';
-import 'controller/bottom_nav_bar_provider.dart';
-import 'controller/text_filed_provider.dart';
+import 'controller/provider/bottom_nav_bar_provider.dart';
+import 'controller/provider/text_filed_provider.dart';
 import 'model/utils/local/change_theme.dart';
 void main()async{
   Provider.debugCheckInvalidValueType = null;

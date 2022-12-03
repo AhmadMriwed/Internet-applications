@@ -5,8 +5,11 @@ import 'package:untitled/view/resource/color.dart';
 import 'package:untitled/view/screens/auth/signIn.dart';
 
 
+import '../../../controller/provider/auth_provider.dart';
+import '../../../model/model.dart';
+import '../../../model/utils/const.dart';
 import '../home/home.dart';
-
+import 'package:provider/provider.dart';
 class login extends StatefulWidget {
 
   @override
@@ -14,11 +17,11 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
-  // String email ;
-  // String passwordValue;
+   String email= "" ;
+   String passwordValue= "";
 
   var formkey=GlobalKey<FormState>();
-
+  late AuthProvider _authProvider;
   bool _obscureText = true;
 
   void _toggle() {
@@ -30,6 +33,7 @@ class _loginState extends State<login> {
 
   @override
   Widget build(BuildContext context) {
+    _authProvider = Provider.of<AuthProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple[200],
@@ -76,6 +80,9 @@ class _loginState extends State<login> {
                     print(email);
 
                   },
+                  onChanged: (val){
+                    email=val;
+                  },
                   decoration: InputDecoration(
                     labelText: "email",
                     border:OutlineInputBorder(
@@ -111,7 +118,9 @@ class _loginState extends State<login> {
                        onFieldSubmitted: ( passwordValue){
                          print(passwordValue);
 
-                       },
+                       },onChanged: (val){
+                         passwordValue=val;
+                     },
 
                        validator:(passwordValue){
                          if (passwordValue!.isEmpty){
@@ -175,12 +184,19 @@ class _loginState extends State<login> {
                         fontSize: 30.0,
                       ),
                       ),
-                      onPressed: (){
-                        if (formkey.currentState!.validate())
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) =>  Home()),
-                        );
+                      onPressed: () async {
+                        if (formkey.currentState!.validate()){
+                        _authProvider.user=User(firstName: "", lastName: "", email: email, userName: "",password: passwordValue);
+                        Const.LOADIG(context);
+                        var result=await _authProvider.login(context);
+                        Navigator.of(context).pop();
+                        if(result['status']){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) =>  Home()),
+                          );
+                        }}
+
                       },
                     ),
                   ),

@@ -9,17 +9,17 @@ class ApiBasic{
 
   };
   Future<Map<String,dynamic>> postB(
-      {required String url,Map<String,String>headers=const{},Map<String,String> body=const{}, bool isToken=true, onValue=onValue,onError=onError}) async{
+      {required String url,Map<String,String>headers=const{}, body=const{}, bool isToken=true, onValue=onValue,onError=onError}) async{
    // headers["Accept"]=["application/json"];
     this.headers.addAll(headers);
     return await post(
       Uri.parse( url)
       ,headers: this.headers,
-      body: body,
+      body: jsonEncode(body),
     ).then(onValue).catchError(onError);
   }
   Future<Map<String,dynamic>> deleteB(
-      {required String url,Map<String,String> headers=const{},Map<String,String> body=const{}, bool isToken=true, onValue=onValue,onError=onError}) async{
+      {required String url,Map<String,String> headers=const{}, body=const{}, bool isToken=true, onValue=onValue,onError=onError}) async{
     this.headers.addAll(headers);
     return await delete(
       Uri.parse( url)
